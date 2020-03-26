@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "itemline")
 public class Itemline {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer seq;
 	private Integer iid;
 	private Integer qty;

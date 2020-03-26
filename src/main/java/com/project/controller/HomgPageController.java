@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,16 +84,18 @@ public class HomgPageController {
 	@PostMapping("/items")
 	public String addOrder(HttpServletRequest req, @RequestParam("cid") Integer cid, Model model) {
 		List<Item> itemList = sService.getAllItem();
-		List<Itemline> itemOrder = new ArrayList<Itemline>();
+//		先新增一筆訂單，取得oid
+		Orders order = new Orders(null, (new Date()), 26, cService.queryCustomerById(cid));
+		Integer newOid = oService.addOrder(order);
+		
 		for(Item i:itemList) {
 			String par="qty"+i.getIid();
 			Integer qty = Integer.parseInt(req.getParameter(par));
 			if(qty==0)
 				continue;
-			Itemline item = new Itemline(null,i.getIid(),qty, null);
-			itemOrder.add(item);
-		}	
-		
+			Itemline item = new Itemline(null,i.getIid(),qty, oService.getOrderByCus(newOid));
+			ilService.addOrderDetail(item);
+		}
 		
 		return "addOrder";		
 	}

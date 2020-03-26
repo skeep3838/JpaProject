@@ -25,6 +25,12 @@ public class ItemlineDaoImpl implements ItemlineDao {
 		List<Itemline> itemList = session.createQuery(hql).setParameter("id", oid).getResultList();
 		return itemList;
 	}
+	@Override
+	public void addOrderDetail(Itemline orderList) {
+		Session session = factory.getCurrentSession();
+		session.save(orderList);
+		
+	}
 	
 	
 

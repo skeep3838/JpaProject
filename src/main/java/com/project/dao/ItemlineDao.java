@@ -6,4 +6,5 @@ import com.project.model.Itemline;
 
 public interface ItemlineDao {
 	List<Itemline> getOrderDetailByOrder(int oid);
+	void addOrderDetail(Itemline orderList);
 }

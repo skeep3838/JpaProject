@@ -26,9 +26,12 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public void addOrder(Orders order) {
+	public Integer addOrder(Orders order) {
 		Session session = factory.getCurrentSession();
 		session.save(order);
+		String hql="SELECT MAX(oid)FROM Orders ";
+		Integer oid = (Integer) session.createQuery(hql).getSingleResult();
+		return oid;
 	}
 
 }

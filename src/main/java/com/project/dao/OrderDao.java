@@ -4,5 +4,5 @@ import com.project.model.Orders;
 
 public interface OrderDao {
 	Orders getOrderByCus(int oid);
-	void addOrder(Orders order);
+	Integer addOrder(Orders order);
 }

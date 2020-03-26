@@ -21,10 +21,10 @@ import javax.persistence.Table;
 @Table(name = "orders")
 public class Orders {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int oid;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer oid;
 	private Date createDate;
-	private int shipment;
+	private Integer shipment;
 	@ManyToOne
 	@JoinColumn(name="cid", nullable=false)
 	private Customer customer;
@@ -33,18 +33,11 @@ public class Orders {
 	@OrderBy("seq")
 	List<Itemline> orderDetail;
 	
-	public Orders(int oid, int cid, Date createDate, int shipment, Customer customer) {
+	public Orders(Integer oid, Date createDate, Integer shipment, Customer customer) {
 		this.oid = oid;
 		this.createDate = createDate;
 		this.shipment = shipment;
 		this.customer = customer;
-	}
-	public Orders(int oid, int cid, Date createDate, int shipment, Customer customer, List<Itemline> orderDetail) {
-		this.oid = oid;
-		this.createDate = createDate;
-		this.shipment = shipment;
-		this.customer = customer;
-		this.orderDetail = orderDetail;
 	}
 	
 	public Orders() {}

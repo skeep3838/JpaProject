@@ -21,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
 		return dao.getOrderByCus(oid);
 	}
 	@Override
-	public void addOrder(Orders order) {
-		dao.addOrder(order);
+	public Integer addOrder(Orders order) {
+		return dao.addOrder(order);
 	}
 
 }

@@ -22,5 +22,10 @@ public class ItemLineServiceImpl implements ItemlineService {
 	public List<Itemline> getOrderDetailByOrder(int oid) {
 		return dao.getOrderDetailByOrder(oid);
 	}
+	@Override
+	public void addOrderDetail(Itemline orderList) {
+		dao.addOrderDetail(orderList);
+		
+	}
 
 }
