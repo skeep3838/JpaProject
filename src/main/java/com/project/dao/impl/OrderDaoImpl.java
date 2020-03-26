@@ -25,4 +25,10 @@ public class OrderDaoImpl implements OrderDao {
 		return orderLidt;
 	}
 
+	@Override
+	public void addOrder(Orders order) {
+		Session session = factory.getCurrentSession();
+		session.save(order);
+	}
+
 }

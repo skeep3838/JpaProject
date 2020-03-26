@@ -1,8 +1,7 @@
 package com.project.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.model.Customer;
 import com.project.model.Item;
+import com.project.model.Itemline;
 import com.project.model.Orders;
 import com.project.service.CustomerService;
 import com.project.service.ItemService;
@@ -26,7 +26,6 @@ public class HomgPageController {
 	OrderService oService;
 	ItemlineService ilService;
 	ItemService sService;
-	private Object item;
 	@Autowired
 	public void setcService(CustomerService cService) {
 		this.cService = cService;
@@ -80,18 +79,21 @@ public class HomgPageController {
 		model.addAttribute("itemList", itemList);
 		return "itemList";
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@PostMapping("/items")
 	public String addOrder(HttpServletRequest req, @RequestParam("cid") Integer cid, Model model) {
 		List<Item> itemList = sService.getAllItem();
-		Map shopcart = new HashMap();
+		List<Itemline> itemOrder = new ArrayList<Itemline>();
 		for(Item i:itemList) {
 			String par="qty"+i.getIid();
-			String productName = req.getParameter(par);
-			shopcart.put(i.getIid(), productName);
-			System.out.println(i.getIid()+" : "+shopcart.get(i.getIid()));
-		}		
+			Integer qty = Integer.parseInt(req.getParameter(par));
+			if(qty==0)
+				continue;
+			Itemline item = new Itemline(null,i.getIid(),qty, null);
+			itemOrder.add(item);
+		}	
+		
+		
 		return "addOrder";		
 	}
 	

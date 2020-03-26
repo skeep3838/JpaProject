@@ -76,6 +76,10 @@ public class Orders {
 	public Customer getCustomer() {
 		return customer;
 	}
+	
+	public void setOrderDetail(List<Itemline> orderDetail) {
+		this.orderDetail = orderDetail;
+	}
 	public List<Itemline> getOrderDetail() {
 		return orderDetail;
 	}

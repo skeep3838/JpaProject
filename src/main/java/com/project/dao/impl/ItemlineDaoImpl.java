@@ -25,5 +25,7 @@ public class ItemlineDaoImpl implements ItemlineDao {
 		List<Itemline> itemList = session.createQuery(hql).setParameter("id", oid).getResultList();
 		return itemList;
 	}
+	
+	
 
 }

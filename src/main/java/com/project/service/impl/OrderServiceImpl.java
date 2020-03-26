@@ -20,5 +20,9 @@ public class OrderServiceImpl implements OrderService {
 	public Orders getOrderByCus(int oid) {
 		return dao.getOrderByCus(oid);
 	}
+	@Override
+	public void addOrder(Orders order) {
+		dao.addOrder(order);
+	}
 
 }

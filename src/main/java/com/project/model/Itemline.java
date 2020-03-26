@@ -13,29 +13,24 @@ import javax.persistence.Table;
 public class Itemline {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int seq;
-	private int iid;
-	private int qty;
+	private Integer seq;
+	private Integer iid;
+	private Integer qty;
 	
 	@ManyToOne
 	@JoinColumn(name="oid", nullable=false)
 	private Orders orders;
 	
-	public Itemline(int seq, int iid, int qty, Orders orders) {
+	public Itemline(Integer seq, Integer iid, Integer qty, Orders orders) {
+		super();
 		this.seq = seq;
 		this.iid = iid;
 		this.qty = qty;
 		this.orders = orders;
 	}
 	
-	public Itemline(int seq, int iid, int qty) {
-		this.seq = seq;
-		this.iid = iid;
-		this.qty = qty;
-	}
-	
 	public Itemline() {}
-	
+
 	public int getSeq() {
 		return seq;
 	}
