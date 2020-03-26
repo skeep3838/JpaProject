@@ -32,8 +32,7 @@
 							<td>${bean.iname}
 							<td>${bean.description}
 							<td>${bean.price}
-							<td><input type="number" id="qty${bean.iid}" name="qty${bean.iid}" value=0>
-							<td><input type="button" onclick="shopCart(${bean.iid})" value="加入購物車">				
+							<td><input type="number" id="qty${bean.iid}" name="qty${bean.iid}" value=0>			
 					</c:forEach>
 				</tbody>
 			</table>

@@ -9,8 +9,8 @@
 <title>會員訂單列表</title>
 </head>
 <body>
-	<h2>會員訂單列表</h2>
-	<h3>訂單編號: ${oid}</h3>
+	<h2>${states}</h2>
+	<h3>訂單編號: ${orderNo}</h3>
 
 
 	<div class="bs-docs-example div-height" align='center'>

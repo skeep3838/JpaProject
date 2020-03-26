@@ -1,6 +1,5 @@
 package com.project.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,6 +66,7 @@ public class HomgPageController {
 	@GetMapping("/itemline")
 	public String getOrderDetailOrder(@RequestParam("oid") Integer oid,Model model) {
 		Orders order = oService.getOrderByCus(oid);
+		model.addAttribute("states","會員訂單明細");
 		model.addAttribute("orderNo", oid);
 		model.addAttribute("orderDetail", order.getOrderDetail());
 		return "orderDetail";
@@ -87,7 +87,7 @@ public class HomgPageController {
 //		先新增一筆訂單，取得oid
 		Orders order = new Orders(null, (new Date()), 26, cService.queryCustomerById(cid));
 		Integer newOid = oService.addOrder(order);
-		
+//		新增訂單明細
 		for(Item i:itemList) {
 			String par="qty"+i.getIid();
 			Integer qty = Integer.parseInt(req.getParameter(par));
@@ -96,20 +96,13 @@ public class HomgPageController {
 			Itemline item = new Itemline(null,i.getIid(),qty, oService.getOrderByCus(newOid));
 			ilService.addOrderDetail(item);
 		}
-		
-		return "addOrder";		
+	
+		model.addAttribute("states","訂購成功");
+		model.addAttribute("orderNo", newOid);
+		model.addAttribute("orderDetail", oService.getOrderByCus(newOid).getOrderDetail());
+		return "orderDetail";		
 	}
 	
-//---------------確定購買---------------------------------	
-	@GetMapping("/addOrder")
-	public String shopCart(@RequestParam("cid") Integer cid, 
-							@RequestParam("shopCa") String shopCa, Model model) {
-		List<Item> itemList = sService.getAllItem();
-		model.addAttribute("cid", cid);
-		model.addAttribute("shopCa", shopCa);
-		return "addOrder";
-	}
-	
-	
+
 
 }
