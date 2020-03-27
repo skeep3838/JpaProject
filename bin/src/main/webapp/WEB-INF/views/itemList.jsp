@@ -6,39 +6,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>會員訂單明細</title>
+<title>會員列表</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 
 	<div class="container">
-		<h2>${states}</h2>
-		<h3>訂單編號: ${orderNo}</h3>
+		<h2>商品列表</h2>
+		<h3>客戶ID: ${cid}</h3>
+	
 		<div class="bs-docs-example div-height" align='center'>
-			<table id='table1' class="table table-hover">
-				<thead>
-					<tr>
-						<th>商品名稱</th>
-						<th>商品描述</th>
-						<th>價格</th>
-						<th>數量</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody id='main'>
-					<c:forEach varStatus="i" var="bean" items="${orderDetail}">
+			<form method="post" action="${pageContext.request.contextPath}/items">
+				<table id='table1' class="table table-hover">
+					<thead>
 						<tr>
-							<td>${bean.item.iname}
-							<td>${bean.item.description}
-							<td>${bean.item.price}
-							<td>${bean.qty}
-							<td><input style='float: right;' class='btn btn-danger'
-										type='button'onclick="javascript:location.href='${pageContext.request.contextPath}/itemline/delete?seq=${bean.seq}'"
-										value='取消購買' />
-					</c:forEach>
-				</tbody>
-			</table>
+							<th>商品編碼</th>
+							<th>商品名稱</th>
+							<th>商品描述</th>
+							<th>商品價格</th>
+							<th>購買數量</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id='main'>
+						<c:forEach varStatus="i" var="bean" items="${itemList}">
+							<tr>
+								<td>${bean.iid}
+								<td>${bean.iname}
+								<td>${bean.description}
+								<td>${bean.price}
+								<td><input type="number" class="form-control" id="qty${bean.iid}" name="qty${bean.iid}" value=0>			
+						</c:forEach>
+					</tbody>
+				</table>
+				<input type="hidden" id="cid" name="cid" value="${cid}">
+	<!-- 			<input type="hidden" id="shopCa" name="shopCa" value=0> -->
+				<input type="submit"  value="確定購買">	
+			</form>
 		</div>
 	</div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

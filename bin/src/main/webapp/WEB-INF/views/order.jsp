@@ -6,36 +6,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>會員訂單明細</title>
+<title>會員訂單列表</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-
 	<div class="container">
-		<h2>${states}</h2>
-		<h3>訂單編號: ${orderNo}</h3>
+		<h2>會員訂單列表</h2>
+		<h3>會員ID: ${cid}</h3>
 		<div class="bs-docs-example div-height" align='center'>
 			<table id='table1' class="table table-hover">
 				<thead>
 					<tr>
-						<th>商品名稱</th>
-						<th>商品描述</th>
-						<th>價格</th>
-						<th>數量</th>
+						<th>訂單編號</th>
+						<th>訂購日期</th>
+						<th>運費</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody id='main'>
-					<c:forEach varStatus="i" var="bean" items="${orderDetail}">
+					<c:forEach varStatus="i" var="bean" items="${cOrder}">
 						<tr>
-							<td>${bean.item.iname}
-							<td>${bean.item.description}
-							<td>${bean.item.price}
-							<td>${bean.qty}
-							<td><input style='float: right;' class='btn btn-danger'
-										type='button'onclick="javascript:location.href='${pageContext.request.contextPath}/itemline/delete?seq=${bean.seq}'"
-										value='取消購買' />
+							<td>${bean.oid}
+							<td>${bean.createDate}
+							<td>${bean.shipment}
+							<td><input style='float: right;' class='btn btn-primary'
+										type='button'onclick="javascript:location.href='${pageContext.request.contextPath}/itemline?oid=${bean.oid}'"
+										value='詳細資訊' />
+							
 					</c:forEach>
 				</tbody>
 			</table>

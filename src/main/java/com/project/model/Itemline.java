@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,17 +15,18 @@ public class Itemline {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer seq;
-	private Integer iid;
 	private Integer qty;
-	
+	@OneToOne
+	@JoinColumn(name="iid", nullable=false)
+	private Item item;
 	@ManyToOne
 	@JoinColumn(name="oid", nullable=false)
 	private Orders orders;
 	
-	public Itemline(Integer seq, Integer iid, Integer qty, Orders orders) {
+	public Itemline(Integer seq, Item item, Integer qty, Orders orders) {
 		super();
 		this.seq = seq;
-		this.iid = iid;
+		this.item = item;
 		this.qty = qty;
 		this.orders = orders;
 	}
@@ -37,13 +39,15 @@ public class Itemline {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	
-	public int getIid() {
-		return iid;
+		
+	public Item getItem() {
+		return item;
 	}
-	public void setIid(int iid) {
-		this.iid = iid;
-	}
+
+//	public void setItem(Item item) {
+//		this.item = item;
+//	}
+
 	public int getQty() {
 		return qty;
 	}

@@ -6,36 +6,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>會員訂單明細</title>
+<title>會員列表</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-
 	<div class="container">
-		<h2>${states}</h2>
-		<h3>訂單編號: ${orderNo}</h3>
+		<h2>會員列表</h2>
 		<div class="bs-docs-example div-height" align='center'>
 			<table id='table1' class="table table-hover">
 				<thead>
 					<tr>
-						<th>商品名稱</th>
-						<th>商品描述</th>
-						<th>價格</th>
-						<th>數量</th>
+						<th>會員id</th>
+						<th>會員名稱</th>
+						<th></th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody id='main'>
-					<c:forEach varStatus="i" var="bean" items="${orderDetail}">
+					<c:forEach varStatus="i" var="bean" items="${customers}">
 						<tr>
-							<td>${bean.item.iname}
-							<td>${bean.item.description}
-							<td>${bean.item.price}
-							<td>${bean.qty}
-							<td><input style='float: right;' class='btn btn-danger'
-										type='button'onclick="javascript:location.href='${pageContext.request.contextPath}/itemline/delete?seq=${bean.seq}'"
-										value='取消購買' />
+							<td>${bean.cid}
+							<td>${bean.cname}
+							<td><input style='float: right;' class='btn btn-primary'
+										type='button'onclick="javascript:location.href='${pageContext.request.contextPath}/items?cid=${bean.cid}'"
+										value='商品清單' />
+							<td><input style='float: right;' class='btn btn-primary'
+										type='button'onclick="javascript:location.href='${pageContext.request.contextPath}/order?cid=${bean.cid}'"
+										value='訂單查詢' />
+										
 					</c:forEach>
 				</tbody>
 			</table>

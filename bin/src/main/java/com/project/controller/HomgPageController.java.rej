@@ -1,0 +1,9 @@
+diff a/src/main/java/com/project/controller/HomgPageController.java b/src/main/java/com/project/controller/HomgPageController.java	(rejected hunks)
+@@ -66,7 +66,6 @@
+ 	@GetMapping("/itemline")
+ 	public String getOrderDetailOrder(@RequestParam("oid") Integer oid,Model model) {
+ 		Orders order = oService.getOrderByCus(oid);
+-		model.addAttribute("states","會員訂單明細");
+ 		model.addAttribute("orderNo", oid);
+ 		model.addAttribute("orderDetail", order.getOrderDetail());
+ 		return "orderDetail";

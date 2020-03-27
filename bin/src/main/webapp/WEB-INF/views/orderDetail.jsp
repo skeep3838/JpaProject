@@ -6,12 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>會員訂單明細</title>
+<title>會員訂單列表</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-
 	<div class="container">
 		<h2>${states}</h2>
 		<h3>訂單編號: ${orderNo}</h3>
@@ -19,9 +18,7 @@
 			<table id='table1' class="table table-hover">
 				<thead>
 					<tr>
-						<th>商品名稱</th>
-						<th>商品描述</th>
-						<th>價格</th>
+						<th>商品編號</th>
 						<th>數量</th>
 						<th></th>
 					</tr>
@@ -29,13 +26,8 @@
 				<tbody id='main'>
 					<c:forEach varStatus="i" var="bean" items="${orderDetail}">
 						<tr>
-							<td>${bean.item.iname}
-							<td>${bean.item.description}
-							<td>${bean.item.price}
+							<td>${bean.iid}
 							<td>${bean.qty}
-							<td><input style='float: right;' class='btn btn-danger'
-										type='button'onclick="javascript:location.href='${pageContext.request.contextPath}/itemline/delete?seq=${bean.seq}'"
-										value='取消購買' />
 					</c:forEach>
 				</tbody>
 			</table>
