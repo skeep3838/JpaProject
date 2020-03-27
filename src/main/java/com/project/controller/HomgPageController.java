@@ -66,7 +66,6 @@ public class HomgPageController {
 	@GetMapping("/itemline")
 	public String getOrderDetailOrder(@RequestParam("oid") Integer oid,Model model) {
 		Orders order = oService.getOrderByCus(oid);
-		model.addAttribute("states","會員訂單明細");
 		model.addAttribute("orderNo", oid);
 		model.addAttribute("orderDetail", order.getOrderDetail());
 		return "orderDetail";
@@ -81,13 +80,14 @@ public class HomgPageController {
 		return "itemList";
 	}
 
+//	20200326-新增訂單完成---------------------------------------
 	@PostMapping("/items")
 	public String addOrder(HttpServletRequest req, @RequestParam("cid") Integer cid, Model model) {
 		List<Item> itemList = sService.getAllItem();
 //		先新增一筆訂單，取得oid
 		Orders order = new Orders(null, (new Date()), 26, cService.queryCustomerById(cid));
 		Integer newOid = oService.addOrder(order);
-//		新增訂單明細
+		
 		for(Item i:itemList) {
 			String par="qty"+i.getIid();
 			Integer qty = Integer.parseInt(req.getParameter(par));

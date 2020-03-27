@@ -1,0 +1,10 @@
+diff a/src/main/java/com/project/controller/HomgPageController.java b/src/main/java/com/project/controller/HomgPageController.java	(rejected hunks)
+@@ -87,7 +87,7 @@
+ //		先新增一筆訂單，取得oid
+ 		Orders order = new Orders(null, (new Date()), 26, cService.queryCustomerById(cid));
+ 		Integer newOid = oService.addOrder(order);
+-		
++//		新增訂單明細
+ 		for(Item i:itemList) {
+ 			String par="qty"+i.getIid();
+ 			Integer qty = Integer.parseInt(req.getParameter(par));
